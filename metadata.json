@@ -1,0 +1,7 @@
+{
+  "name": "Copy of HeartSync - Romantic Portal",
+  "description": "A beautiful romantic application featuring an anniversary counter, AI-powered love letter generator, and redeemable love coupons.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

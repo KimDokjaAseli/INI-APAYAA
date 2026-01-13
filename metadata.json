@@ -1,7 +1,5 @@
 {
-  "name": "Copy of HeartSync - Romantic Portal",
-  "description": "A beautiful romantic application featuring an anniversary counter, AI-powered love letter generator, and redeemable love coupons.",
-  "requestFramePermissions": [
-    "camera"
-  ]
+  "name": "LDR Survival Kit",
+  "description": "A self-contained romantic app for virtual relationships. No backend, full client-side experience with AI-powered surprises.",
+  "requestFramePermissions": []
 }

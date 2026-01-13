@@ -3,25 +3,24 @@ import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
-export const generateRomanticLetter = async (mood: string, name: string): Promise<string> => {
+export const generateRomanticLetter = async (name: string): Promise<string> => {
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
-      contents: `Buatkan pesan cinta singkat untuk pacar saya namanya ${name}.
-      Konteks: Kita sedang menjalani hubungan virtual/LDR.
-      Mood pesan: ${mood}.
-      Gaya Bahasa: Gunakan bahasa Indonesia santai (bahasa chat anak muda), jujur, romantis tapi ada bumbu lucunya biar nggak terlalu kaku atau "alay". 
-      Jangan pakai kata "wahai", "pujaan hati", atau "dinda".
-      Fokus ke perasaan kangen karena jauh, tapi tetap bikin dia ketawa atau senyum. Maksimal 2-3 kalimat saja biar kayak chat beneran.`,
+      contents: `Tuliskan sebuah pesan singkat acak (random) untuk pacar saya namanya ${name}.
+      Konteks: Hubungan LDR / Virtual.
+      Pilih salah satu vibe secara acak: kangen berat, gombal receh, lucu/mengejek jarak, atau curhat pengen ketemu tapi santai.
+      Gaya Bahasa: Bahasa chat Indonesia yang natural (pake 'aku-kamu' atau gaya santai), jangan puitis alay, jangan kaku kayak AI.
+      Hindari kata-kata pujangga lama. Harus terasa seperti chat yang dikirim tiba-tiba. Maksimal 1-2 kalimat pendek.`,
       config: {
-        temperature: 0.9,
+        temperature: 1.0, // Higher temperature for more randomness
         topP: 0.95,
       }
     });
 
-    return response.text || "Aku sebenernya mau ngetik panjang, tapi intinya aku kangen kamu sampe mau meledak. Dah itu aja.";
+    return response.text?.trim() || "Kangen kamu, itu aja. Nggak usah nanya kenapa.";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "Duh, server cintanya lagi down gara-gara kangen kamu. Nanti coba lagi ya!";
+    return "Sinyal kangennya lagi loading, tapi intinya aku sayang kamu.";
   }
 };

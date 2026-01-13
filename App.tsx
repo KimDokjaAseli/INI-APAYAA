@@ -10,11 +10,10 @@ const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<AppSection>(AppSection.HOME);
   const [letter, setLetter] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [mood, setMood] = useState('Kangen Berat');
 
   const handleGenerate = async () => {
     setIsGenerating(true);
-    const text = await generateRomanticLetter(mood, "Sayang");
+    const text = await generateRomanticLetter("Sayang");
     setLetter(text);
     setIsGenerating(false);
   };
@@ -62,7 +61,7 @@ const App: React.FC = () => {
             LDR Survival Kit
           </h1>
           <p className="text-slate-400 font-medium tracking-widest uppercase text-[10px] md:text-xs">
-            Dibuat dengan ❤️ & sedikit rasa frustasi karena jauh
+            Dibuat dengan ❤️ & rasa kangen yang numpuk
           </p>
         </header>
 
@@ -84,7 +83,7 @@ const App: React.FC = () => {
                       onClick={() => setActiveSection(AppSection.LETTERS)}
                       className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-red-500/20 active:scale-95"
                     >
-                      Bikin Surat Random 💌
+                      Ambil Pesan Random 💌
                     </button>
                     <button 
                       onClick={() => setActiveSection(AppSection.COUPONS)}
@@ -94,7 +93,7 @@ const App: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                {/* Minimalist Visuals */}
+                {/* Visuals */}
                 <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute top-10 right-10 text-8xl opacity-10 rotate-12 select-none">🌍</div>
               </div>
@@ -105,31 +104,15 @@ const App: React.FC = () => {
         {activeSection === AppSection.LETTERS && (
           <div className="max-w-2xl mx-auto space-y-8 animate-in zoom-in-95 duration-500">
             <div className="bg-white rounded-[2.5rem] p-10 md:p-14 shadow-xl border border-red-50">
-              <div className="mb-10">
-                <h2 className="text-3xl font-bold text-slate-800 mb-3">Pesan Rahasia</h2>
-                <p className="text-slate-400 leading-relaxed">Pilih mood kamu hari ini, nanti Gemini (AI pinter tapi nggak sepinter aku) bakal bikinin pesannya.</p>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3 mb-10">
-                {['Kangen Berat', 'Lagi Ngambek', 'Mau VC Dong', 'Gabut Pol'].map(m => (
-                  <button
-                    key={m}
-                    onClick={() => setMood(m)}
-                    className={`px-4 py-4 rounded-2xl text-sm font-bold transition-all border-2 ${
-                      mood === m 
-                        ? 'bg-red-500 border-red-500 text-white shadow-lg' 
-                        : 'bg-white border-slate-100 text-slate-400 hover:border-red-200 hover:text-red-400'
-                    }`}
-                  >
-                    {m}
-                  </button>
-                ))}
+              <div className="mb-10 text-center">
+                <h2 className="text-3xl font-bold text-slate-800 mb-3">Pesan Acak</h2>
+                <p className="text-slate-400 leading-relaxed">Klik tombol di bawah buat dapet pesan random dari aku (via bantuan AI biar makin bervariasi!)</p>
               </div>
 
               <button
                 onClick={handleGenerate}
                 disabled={isGenerating}
-                className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg shadow-xl hover:bg-black disabled:bg-slate-300 transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                className="w-full bg-slate-900 text-white py-6 rounded-3xl font-bold text-xl shadow-xl hover:bg-black disabled:bg-slate-300 transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
               >
                 {isGenerating ? (
                   <>
@@ -137,17 +120,19 @@ const App: React.FC = () => {
                     Lagi Ngerangkai Kata...
                   </>
                 ) : (
-                  'Generate Pesan ✨'
+                  'Buka Pesan Baru ✨'
                 )}
               </button>
 
               {letter && (
-                <div className="mt-12 p-10 bg-red-50/30 rounded-[2.3rem] border-2 border-dashed border-red-100 relative animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                  <p className="text-slate-700 leading-relaxed font-romantic text-2xl md:text-3xl italic">
+                <div className="mt-12 p-10 bg-red-50/40 rounded-[2.3rem] border-2 border-dashed border-red-100 relative animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                  <p className="text-slate-700 leading-relaxed font-romantic text-2xl md:text-3xl italic text-center">
                     "{letter}"
                   </p>
-                  <div className="mt-8 text-right">
-                    <span className="text-red-500 font-bold text-sm tracking-widest uppercase">— Your Long Distance Human</span>
+                  <div className="mt-10 flex items-center justify-center gap-4">
+                    <div className="h-[1px] w-8 bg-red-200"></div>
+                    <span className="text-red-500 font-bold text-xs tracking-widest uppercase">Love from across the screen</span>
+                    <div className="h-[1px] w-8 bg-red-200"></div>
                   </div>
                 </div>
               )}
@@ -160,8 +145,7 @@ const App: React.FC = () => {
             <div className="max-w-xl">
               <h2 className="text-4xl font-bold text-slate-800">Virtual Gift Shop</h2>
               <p className="text-slate-400 mt-4 leading-relaxed">
-                Karena aku belum bisa kasih kado fisik setiap hari, ini ada beberapa "kupon" yang bisa kamu klaim. 
-                Gunakan dengan bijak ya, Yang!
+                Karena kado fisik belum bisa dikirim tiap hari, ini ada beberapa "kupon" yang bisa kamu klaim lewat screenshot ke WA aku ya!
               </p>
             </div>
             <CouponSection />
@@ -169,7 +153,7 @@ const App: React.FC = () => {
         )}
       </main>
 
-      {/* Mobile Navigation Bar */}
+      {/* Mobile Navigation */}
       <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[85%] md:hidden bg-slate-900/95 backdrop-blur-xl rounded-[2rem] h-20 flex items-center justify-around z-50 px-6 shadow-2xl">
         {[
           { id: AppSection.HOME, icon: '🏠' },

@@ -1,3 +1,2 @@
 
-// This file is no longer used and can be removed.
-export default () => null;
+// This file has been removed as per the request to delete developer documentation.
